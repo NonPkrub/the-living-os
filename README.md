@@ -17,7 +17,7 @@
 - AutoMigrate database tables  
 - Docker & Docker Compose support  
 - Bonus (option): Custom short code, Input validation, Error handling  
-
+````
 ---
 
 ## 📦 การติดตั้งและรัน
@@ -26,7 +26,7 @@
 ```bash
 git clone <your-repo-url>
 cd url-shortener
-````
+
 
 ### 2. รันด้วย Docker Compose
 
