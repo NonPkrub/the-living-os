@@ -1,9 +1,4 @@
 # URL Shortener API
-ได้เลยครับ ผมช่วยปรับ README.md ภาษาไทย ให้ **รวมข้อสังเกต / ข้อติดขัด** ที่คุณเจอด้วย ✅
-จะช่วย reviewer เข้าใจปัญหาและ workaround
-
-````markdown
-# URL Shortener API
 
 โปรเจกต์ URL Shortener API พัฒนาโดย **Go Fiber** ใช้ **PostgreSQL** สำหรับเก็บข้อมูล พร้อม Docker & Docker Compose support  
 
@@ -17,7 +12,7 @@
 - AutoMigrate database tables  
 - Docker & Docker Compose support  
 - Bonus (option): Custom short code, Input validation, Error handling  
-````
+
 ---
 
 ## 📦 การติดตั้งและรัน
