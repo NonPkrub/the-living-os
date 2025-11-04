@@ -1,0 +1,132 @@
+basePath: /
+definitions:
+  entities.URLShortenCreateRequest:
+    properties:
+      originalUrl:
+        type: string
+      shortCode:
+        default: abc123
+        type: string
+    required:
+    - originalUrl
+    type: object
+  entities.URLShortenCreateResponse:
+    properties:
+      originalUrl:
+        type: string
+      shortCode:
+        type: string
+      shortUrl:
+        type: string
+    type: object
+  entities.URLShortenGetResponse:
+    properties:
+      clicks:
+        type: integer
+      createdAt:
+        type: string
+      originalUrl:
+        type: string
+      shortCode:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: This is an API server for short url.
+  title: ShortURL API
+  version: "1.0"
+paths:
+  /api/{shortCode}:
+    get:
+      description: Redirect user using short code
+      parameters:
+      - description: Short Code
+        in: path
+        name: shortCode
+        required: true
+        type: string
+      responses:
+        "301":
+          description: Moved Permanently
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Redirect to the original URL
+      tags:
+      - ShortURL
+  /api/shorten:
+    post:
+      consumes:
+      - application/json
+      description: Create a short url
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/entities.URLShortenCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entities.URLShortenCreateResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a short url
+      tags:
+      - ShortURL
+  /api/stats/{shortCode}:
+    get:
+      description: Returns information such as clicks and createdAt
+      parameters:
+      - description: Short Code
+        in: path
+        name: shortCode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.URLShortenGetResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get statistics for a short URL
+      tags:
+      - ShortURL
+swagger: "2.0"
